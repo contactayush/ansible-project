@@ -1,0 +1,29 @@
+--- #main configuration file
+- hosts: devlinux
+  user: velocity
+  connection: ssh
+  become: yes
+  gather_facts: yes
+
+  tasks:
+    - name: clone repo
+      ansible.builtin.git:
+        repo: 'https://github.com/contactayush/game-of-life.git'
+        dest: /mnt/game-of-life
+        clone: yes
+
+    - name: create war
+      ansible.builtin.command: mvn clean install
+      args:
+        chdir: /mnt/game-of-life/
+
+    - name: copy war
+      ansible.builtin.command: mv gameoflife.war /usr/share/tomcat/webapps
+      args:
+        chdir: /mnt/game-of-life/gameoflife-web/target
+
+    - name: start tomcat
+      action: service name=tomcat state=started
+
+
+
