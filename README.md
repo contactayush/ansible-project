@@ -31,11 +31,6 @@ Before running the Ansible playbooks, make sure to:
 
 ## Ansible Structure
 
-ansible/
-|-- hosts
-|-- inventory
-|-- installation.yaml
-|-- main.yaml
 
 installation.yaml: Installs all required software on the Ansible hosts.
 main.yaml: Defines the process for creating a WAR file and starting the Tomcat server.
@@ -61,10 +56,10 @@ Example content:
   hosts: ansible_hosts
   tasks:
     - name: Create WAR File
-      # Your tasks for creating the WAR file go here
+         Your tasks for creating the WAR file go here
 
     - name: Start Tomcat Server
-      # Your tasks for starting the Tomcat server go here
+         Your tasks for starting the Tomcat server go here
 Usage
 Edit the inventory/ansible_hosts file to include the IP addresses or hostnames of your Ansible hosts.
 
