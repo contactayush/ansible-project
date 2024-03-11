@@ -1,0 +1,27 @@
+--- #installation file
+- hosts: devlinux
+  connection: ssh
+  become: yes
+  user: velocity
+  gather_facts: yes
+  vars:
+    pkg1name: git
+    pkg2name: maven
+    pkg3name: java-1.8.0-openjdk-devel.x86_64
+    pkg4name: tomcat
+
+
+  tasks:
+    - name: install git
+      action: yum pkg="{{pkg1name}}" state=present
+
+    - name: install maven
+      action: yum pkg="{{pkg2name}}" state=present
+
+    - name: install java
+      action: yum pkg="{{pkg3name}}" state=present
+
+    - name: install tomcat
+      action: yum pkg="{{pkg4name}}" state=present
+
+
